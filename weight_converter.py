@@ -1,4 +1,5 @@
 def get_user_input(prompt):
+    '''Prompts the user for input and ensures it's a valid number.'''
     while True:
         try:
             return float(input(prompt))
@@ -6,6 +7,8 @@ def get_user_input(prompt):
             print("Invalid input! Please enter a valid number.")
 
 def weight_converter():
+    '''The Main Weight Converter fucntion to Displays a menu to the user to convert weights.'''
+    
     while True:
         print("\n-----Weight Converter-----")
         print("1. Pound to Kilogram.")
