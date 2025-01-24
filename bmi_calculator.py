@@ -4,19 +4,19 @@ def BMI_calculator(weight, height):
     bmi_score= weight / ((height/100)**2)
     
     if bmi_score<18.5:
-        return "Underweight"
+        return bmi_score,"Underweight"
     elif bmi_score>=18.5 and bmi_score<25:
-        return "Normal"
+        return bmi_score,"Normal"
     elif bmi_score>=25 and bmi_score<30:
-        return "Overweight"
+        return bmi_score,"Overweight"
     elif bmi_score>=30:
-        return "Obesity"     
+        return bmi_score,"Obesity"     
 
 def get_valid_input(prompt, value_type=float):
     """for user input and validate it."""
     
     while True:
-        user_input=input(prompt)
+        user_input=input(prompt).strip()
         try:
             value=value_type(user_input)
             
@@ -32,7 +32,7 @@ def get_valid_input(prompt, value_type=float):
                     return value
             
         except ValueError:
-            print(f">>Invalid input. please enter {value_type}value")
+            print(f">>Invalid input. please enter numeric value")
     
 
 def main():
@@ -45,9 +45,9 @@ def main():
     height=get_valid_input("\nEnter Your Height(in cm): ")
     weight=get_valid_input("\nEnter Your Weight(in kg): ")
 
-    category=BMI_calculator(weight,height)
+    bmi_value, category = BMI_calculator(weight, height)
     
-    print(f"\n{name.title()}, your BMI falls under the '{category}' category.")
+    print(f"\n{name.title()}, your BMI is {bmi_value:.2f}, which falls under the '{category}' category.")
 
         
 
