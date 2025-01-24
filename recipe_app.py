@@ -12,9 +12,13 @@ class RecipeManagement:
         self.description = description
 
     def update_recipe(self, name, type, description):
-        self.name = name
-        self.type = type
-        self.description = description
+        
+        if name:
+            self.name=name
+        if type:
+            self.type=type
+        if description:
+            self.description=description
 
 
 def find_recipe_by_id(recipes, id):
@@ -58,15 +62,16 @@ def main():
                     recipe = find_recipe_by_id(recipes, id)
 
                     if recipe:
-                        name = input(f"\nEnter updated name (current: {recipe.name}): ")
-                        type = input(f"Enter updated type (current: {recipe.type}): ")
-                        description = input(f"Enter updated description (current: {recipe.description}): ")
-
-                        if not name or not type or not description:
-                            print("\nAll fields are required!")
-                        else:
-                            recipe.update_recipe(name, type, description)
-                            print("\nRecipe updated successfully.")
+                        name = input(f"\nEnter updated name (current: {recipe.name}) or press Enter to keep current: ")
+                        type = input(f"Enter updated type (current: {recipe.type}) or press Enter to keep current: ")
+                        description = input(f"Enter updated description (current: {recipe.description}) or press Enter to keep current: ")
+                        
+                        name=name if name else None
+                        type=type if type else None
+                        description=description if description else None
+                                                
+                        recipe.update_recipe(name, type, description)
+                        print("\nRecipe updated successfully.")
                     else:
                         print("\nRecipe with the given ID not found.")
                 except ValueError:
